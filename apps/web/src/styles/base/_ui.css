@@ -1,0 +1,51 @@
+:root {
+    /* Border radius*/
+    --rounded-sm: 0.25rem;
+    --rounded-md: 0.375rem;
+    --rounded-lg: 0.5rem;
+    --rounded-xl: 1rem;
+    --rounded-full: 99999px;
+  }
+  :root {
+    /*Z index*/
+    --layer-background: -1000;
+    --layer-base: 0;
+    --layer-overlay: 1000;
+    --layer-drawer: 1200;
+    --layer-navigation: 1210;
+    --layer-modal: 2000;
+    --layer-toast: 3000;
+  }
+  
+  :root {
+    /* Box shadow*/
+    --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+      0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+      0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+    --shadow-none: 0 0 #000000;
+  }
+  
+  :root{
+    /* Blur */
+    --blur-sm: blur(4px);
+    --blur-md: blur(8px);
+    --blur-lg: blur(16px);
+    --blur-xl: blur(24px);
+    --blur-2xl: blur(40px);
+  }
+  
+  :root {
+    --tracking-tighter: -0.05em;
+    --tracking-tight: -0.025em;
+    --tracking-normal: 0em;
+    --tracking-wide: 0.025em;
+    --tracking-wider: 0.05em;
+    --tracking-widest: 0.1em;
+  }
+  

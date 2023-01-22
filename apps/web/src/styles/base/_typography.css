@@ -1,0 +1,45 @@
+:root {
+  /* Font family*/
+  --font-family-body: "sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji"
+
+
+  /*Font size*/
+  --font-xxs: 0.6rem;
+  --font-xs: 0.75rem;
+  --font-sm: 0.875rem;
+  --font-base: 1rem;
+  --font-lg: 1.125rem;
+  --font-xl: 1.25rem;
+  --font-2xl: 1.5rem;
+  --font-3xl: 1.875rem;
+  --font-4xl: 2.25rem;
+  --font-5xl: 3rem;
+  --font-6xl: 3.85rem;
+  --font-7xl: 4.5rem;
+  --font-8xl: 5.25rem;
+  --font-9xl: 6rem;
+
+  /*Font weight*/
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
+
+  /*Line height*/
+  --line-none: 1;
+  --line-xs: 1.25;
+  --line-sm: 1.275;
+  --line-md: 1.5;
+  --line-lg: 1.625;
+  --line-xl: 2;
+
+  --tracking-tighter: -0.05em;
+  --tracking-tight: -0.025em;
+  --tracking-normal: 0em;
+  --tracking-wide: 0.025em;
+  --tracking-wider: 0.05em;
+  --tracking-widest: 0.1em;
+}

@@ -1,0 +1,18 @@
+@import url('./base/index.css');
+@import url('./_themes.css');
+
+:root {
+    font-family: var(--font-family-body);
+    font-size: 14px;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    color: var(--primary-text-color);
+    background-color: var(--base-color);
+    height: 100vh;
+}

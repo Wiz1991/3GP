@@ -1,0 +1,13 @@
+[data-theme='dark'] {
+    --base-color: var(--color-dark-gray-700);
+    --header-color: var(--color-dark-gray-600);
+
+    --primary-text-color: var(--color-white-200);
+}
+
+[data-theme='light'] {
+    --base-color: var(--color-white-100);
+    --header-color: var(--color-white-200);
+
+    --primary-text-color: var(--color-dark-gray-800);
+}
