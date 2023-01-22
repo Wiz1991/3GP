@@ -1,0 +1,30 @@
+{
+    "name": "use-tweaks",
+    "version": "0.0.1",
+    "main": "dist/index.js",
+    "typings": "dist/index.d.ts",
+    "module": "dist/use-tweaks.esm.js",
+    "files": [
+        "dist",
+        "src"
+    ],
+    "peerDependencies": {
+        "react": "^18.2.0",
+        "tweakpane": "^3.1.2"
+    },
+    "devDependencies": {
+        "eslint": "^7.32.0",
+        "eslint-config-custom": "*",
+        "react": "^18.2.0",
+        "tsconfig": "*",
+        "typescript": "^4.5.2"
+    },
+    "scripts": {
+        "lint": "TIMING=1 eslint \"**/*.ts*\""
+    },
+    "dependencies": {
+        "change-case": "^4.1.1",
+        "get-value": "^3.0.1",
+        "set-value": "^3.0.2"
+    }
+}
