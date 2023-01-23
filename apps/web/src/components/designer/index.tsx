@@ -9,45 +9,47 @@ import {
     Environment,
 } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
-import { memo } from 'react';
+import { memo, Suspense } from 'react';
 import styles from './styles.module.css';
 import { useTweaks } from 'use-tweaks';
+import { useLoader } from '@react-three/fiber';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 export function Designer() {
     const gridOptions: GridProps = useTweaks('Grid', {
-        cellSize: 0.6,
+        cellSize: 17,
         cellThickness: 1,
         cellColor: '#6f6f6f',
-        sectionSize: 3.3,
+        sectionSize: 80,
         sectionThickness: 1.5,
         sectionColor: '#9d4b4b',
-        fadeDistance: 40,
+        fadeDistance: 3000,
         fadeStrength: 1,
         followCamera: false,
         infiniteGrid: true,
     });
 
     return (
-        <Canvas shadows camera={{ position: [10, 12, 12], fov: 25 }}>
-            <Picker />
-            <group position={[0, -0.5, 0]}>
-                <Center top position={[-2, 0, 2]}>
-                    <mesh castShadow>
-                        <sphereGeometry args={[0.5, 64, 64]} />
-                        <meshStandardMaterial color="#9d4b4b" />
-                    </mesh>
-                </Center>
-                <Shadows />
+        <section className={styles['canvas-renderer']}>
+            <Canvas
+                shadows
+                camera={{ position: [300, 250, 5], fov: 60, far: 3000 }}
+            >
+                <group position={[0, 0, 0]}>
+                    <Factory />
+                    <Shadows />
+                </group>
+                <Environment preset="city" />
+                <OrbitControls />
                 <Grid
                     infiniteGrid
-                    position={[0, -0.01, 0]}
+                    position={[0, -10, 0]}
                     args={[10.5, 10.5]}
                     {...gridOptions}
                 />
-            </group>
-            <Environment preset="city" />
-            <OrbitControls />
-        </Canvas>
+            </Canvas>
+            <Picker />
+        </section>
     );
 }
 
@@ -63,3 +65,13 @@ const Shadows = memo(() => (
         <RandomizedLight amount={8} radius={4} position={[5, 5, -10]} />
     </AccumulativeShadows>
 ));
+
+const Factory = () => {
+    const gltf = useLoader(GLTFLoader, 'http://localhost:3000/scene.gltf');
+
+    return (
+        <Suspense fallback={null}>
+            <primitive object={gltf.scene} />
+        </Suspense>
+    );
+};

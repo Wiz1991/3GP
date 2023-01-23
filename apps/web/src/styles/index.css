@@ -13,6 +13,7 @@ html {
 body {
     margin: 0;
     background-color: #303035;
+    color: var(--primary-text-color);
     height: 100vh;
 }
 

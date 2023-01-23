@@ -1,4 +1,6 @@
-import { Html } from '@react-three/drei';
+import { Center, Html } from '@react-three/drei';
+import { useThree } from '@react-three/fiber';
+import { useEffect } from 'react';
 import { IconType } from 'react-icons';
 import { FaJediOrder } from 'react-icons/fa';
 import styles from './styles.module.css';
@@ -19,13 +21,11 @@ export function Picker() {
     ];
 
     return (
-        <Html as="div">
-            <div className={styles['picker-container']}>
-                {assets.map((asset) => (
-                    <PickerItem asset={asset} />
-                ))}
-            </div>
-        </Html>
+        <div className={styles['picker-container']}>
+            {assets.map((asset) => (
+                <PickerItem asset={asset} key={asset.label} />
+            ))}
+        </div>
     );
 }
 
