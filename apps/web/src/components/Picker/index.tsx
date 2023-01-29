@@ -2,7 +2,7 @@ import { Center, Html } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
 import { useEffect } from 'react';
 import { IconType } from 'react-icons';
-import { FaJediOrder } from 'react-icons/fa';
+import { FaBoxes, FaJediOrder } from 'react-icons/fa';
 import styles from './styles.module.css';
 
 interface Asset {
@@ -22,9 +22,15 @@ export function Picker() {
 
     return (
         <div className={styles['picker-container']}>
-            {assets.map((asset) => (
-                <PickerItem asset={asset} key={asset.label} />
-            ))}
+            <button className={styles['picker-container__toggler']}>
+                <FaBoxes className={styles.toggler__icon} />
+                {/* <span>Assets</span> */}
+            </button>
+            <div className={styles['picker-container__items']}>
+                {assets.map((asset) => (
+                    <PickerItem asset={asset} key={asset.label} />
+                ))}
+            </div>
         </div>
     );
 }

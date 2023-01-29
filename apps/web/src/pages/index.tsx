@@ -1,4 +1,4 @@
-import { Designer } from '@/components/designer';
+import { Designer } from '@/components/Designer';
 
 export default function Web() {
     return <Designer />;
