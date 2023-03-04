@@ -23,7 +23,7 @@ export default function Scene({ children }: { children: ReactNode }) {
         >
             {children}
             <Environment preset="city" />
-            <Grid infiniteGrid position={[0, 0, 0]} {...gridOptions} />{' '}
+            <Grid infiniteGrid position={[0, 0, 0]} {...gridOptions} />
         </Canvas>
     );
 }
