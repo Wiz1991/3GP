@@ -1,4 +1,4 @@
-import { Picker } from '@/components/Picker';
+import { AssetPicker } from '@/components/AssetPicker';
 import {
     AccumulativeShadows,
     Center,
@@ -16,7 +16,7 @@ import { useTweaks } from 'use-tweaks';
 import { useLoader } from '@react-three/fiber';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import Scene from '@/components/Designer/Scene';
-import { Box } from '@/components/Models/box';
+import { Box } from '@/components/Objects/box';
 import { Object3D } from 'three';
 
 export function Designer() {
@@ -27,7 +27,7 @@ export function Designer() {
                 <Controls />
                 <Shadows />
             </Scene>
-            <Picker />
+            <AssetPicker />
         </section>
     );
 }

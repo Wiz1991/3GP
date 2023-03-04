@@ -1,8 +1,8 @@
-import useDisclosure from '@/src/hooks/useDisclosure';
-import useLocalStorage from '@/src/hooks/useLocalStorage';
-import useMediaQuery from '@/src/hooks/useMediaQuery';
-import useRootSelector from '@/src/hooks/useRootSelector';
-import useTheme from '@/src/hooks/useTheme';
+import useDisclosure from '@/hooks/useDisclosure';
+import useLocalStorage from '@/hooks/useLocalStorage';
+import useMediaQuery from '@/hooks/useMediaQuery';
+import useRootSelector from '@/hooks/useRootSelector';
+import useTheme from '@/hooks/useTheme';
 
 export {
     useDisclosure,
