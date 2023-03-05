@@ -1,3 +1,4 @@
+import { Item } from '@/components/AssetPicker/Item';
 import { ToolbarButton } from '@/components/ToolbarButton';
 import classNames from 'classnames';
 import { useState } from 'react';
@@ -5,7 +6,7 @@ import { IconType } from 'react-icons';
 import { FaAirFreshener, FaBoxes, FaJediOrder } from 'react-icons/fa';
 import styles from './styles.module.css';
 
-interface Asset {
+export interface Asset {
     type: string;
     icon: IconType;
     label: string;
@@ -31,7 +32,9 @@ export function AssetPicker() {
                 <FaBoxes className={styles.toggler__icon} />
             </ToolbarButton>
             <div className={styles['picker-container__assets']}>
-                
+                {assets.map((asset) => (
+                    <Item asset={asset}></Item>
+                ))}
             </div>
         </div>
     );

@@ -10,3 +10,8 @@
 
 .picker-container__assets {
 }
+
+.assets__item {
+    background-color: gray;
+    padding: var(--size-2);
+}

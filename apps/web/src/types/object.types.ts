@@ -1,6 +1,6 @@
 export interface ObjectUserData {}
 
 export interface BaseObjectProps {
-    userData: ObjectUserData;
+    userData?: ObjectUserData;
     draggable?: boolean;
 }

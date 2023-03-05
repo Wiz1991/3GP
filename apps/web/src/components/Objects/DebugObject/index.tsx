@@ -11,7 +11,7 @@ export function DebugObject({
 }: DebugObjectProps) {
     return (
         <mesh position={[0, 0, 0]} {...rest}>
-            <boxGeometry args={[80, 80, 80]} />
+            <boxGeometry args={[20, 10, 20]} />
             <meshBasicMaterial color={0x00ff00} wireframe />
         </mesh>
     );
