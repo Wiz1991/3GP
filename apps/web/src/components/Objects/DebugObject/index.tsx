@@ -10,9 +10,9 @@ export function DebugObject({
     ...rest
 }: DebugObjectProps) {
     return (
-        <mesh position={[0, 0, 0]} {...rest}>
-            <boxGeometry args={[20, 10, 20]} />
-            <meshBasicMaterial color={0x00ff00} wireframe />
+        <mesh position={[0, 0.5, 0]} castShadow {...rest}>
+            <boxGeometry args={[2, 1, 2]} />
+            <meshStandardMaterial color="#9d4b4b" />
         </mesh>
     );
 }

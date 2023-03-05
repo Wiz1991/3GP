@@ -12,7 +12,7 @@ html {
 
 body {
     margin: 0;
-    background-color: #3a3939;
+    background-color: #f0f0f0;
     color: var(--primary-text-color);
     height: 100vh;
 }

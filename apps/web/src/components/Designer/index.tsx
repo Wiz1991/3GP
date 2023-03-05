@@ -6,6 +6,16 @@ import { DropTargetMonitor, useDrop } from 'react-dnd';
 import { useDispatch } from 'react-redux';
 import { addObjectToQueue } from '@/store/designer';
 import { nanoid } from '@reduxjs/toolkit';
+import {
+    ContactShadows,
+    Environment,
+    GizmoHelper,
+    GizmoViewport,
+    OrbitControls,
+    OrthographicCamera,
+    Stats,
+} from '@react-three/drei';
+import { Shadows } from '@/components/Designer/Shadows';
 
 export function Designer() {
     const dispatch = useDispatch();
@@ -38,8 +48,18 @@ export function Designer() {
 
     return (
         <section className={styles['canvas-renderer']} ref={dropRef}>
-            <Canvas>
+            <Canvas shadows camera={{ position: [0, 30, 40], fov: 25 }}>
                 <Scene />
+                <Environment preset="city" />
+                <Shadows />
+                <OrthographicCamera />
+                <OrbitControls makeDefault />
+                <GizmoHelper alignment="bottom-right" margin={[80, 80]}>
+                    <GizmoViewport
+                        axisColors={['#9d4b4b', '#2f7f4f', '#3b5b9d']}
+                        labelColor="white"
+                    />
+                </GizmoHelper>
             </Canvas>
             <AssetPicker />
         </section>
