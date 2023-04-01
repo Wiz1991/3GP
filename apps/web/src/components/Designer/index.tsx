@@ -16,6 +16,7 @@ import {
     Stats,
 } from '@react-three/drei';
 import { Shadows } from '@/components/Designer/Shadows';
+import React from 'react';
 
 export function Designer() {
     const dispatch = useDispatch();
@@ -65,3 +66,30 @@ export function Designer() {
         </section>
     );
 }
+
+//HOW TO ADD FACTORY
+
+/*
+
+const Factory = () => {
+    const gltf = useLoader(FBXLoader, 'http://localhost:3000/Factory_Light.fbx');
+    
+    gltf.children.map(obj => {
+        //@ts-ignore
+        if(obj.isMesh){
+            //@ts-ignore
+            obj.material.color.set('#FEFEFE');
+        }
+    })
+
+    //const TEST = new THREE.Mesh(gltf, materialTEST);
+
+    return (
+        <Suspense fallback={null}>
+            <primitive object={gltf} />
+            <meshBasicMaterial color={'#FEFEFE'}></meshBasicMaterial>
+        </Suspense>
+    );
+};
+
+*/
