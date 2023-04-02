@@ -1,11 +1,19 @@
 {
-    "compilerOptions": {
-        "jsx": "react",
-        "paths": {
-            "@/*": ["./src/*"]
-        }
-    },
-    "extends": "tsconfig/nextjs.json",
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-    "exclude": ["node_modules"]
+  "compilerOptions": {
+    "jsx": "preserve",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
+  },
+  "extends": "tsconfig/nextjs.json",
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
