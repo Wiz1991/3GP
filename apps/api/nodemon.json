@@ -1,0 +1,8 @@
+{
+    "exec": "nodemon --exec node  --inspect --require ts-node/register",
+    "ext": "js,ts",
+    "ignore": [".git", "**/*.test.ts", "**/*.spec.ts", "node_modules/"],
+    "restartable": "rs",
+    "verbose": false,
+    "watch": ["src/**/*.ts"]
+}

@@ -1,0 +1,47 @@
+{
+  "data": {
+    "_id": 0,
+    "propertyOrder": {},
+    "properties": {
+      "id": {
+        "name": "id",
+        "kind": "scalar",
+        "primary": true,
+        "type": "string",
+        "array": false
+      }
+    },
+    "props": [
+      {
+        "name": "id",
+        "kind": "scalar",
+        "primary": true,
+        "type": "string",
+        "array": false
+      }
+    ],
+    "primaryKeys": [
+      "id"
+    ],
+    "filters": {},
+    "hooks": {},
+    "indexes": [],
+    "uniques": [],
+    "checks": [],
+    "concurrencyCheckKeys": {},
+    "className": "Asset",
+    "path": "./src/entities/asset.ts",
+    "name": "Asset",
+    "abstract": false,
+    "internal": true,
+    "constructorParams": [],
+    "toJsonParams": [],
+    "useCache": true,
+    "compositePK": false,
+    "relations": [],
+    "collection": "asset"
+  },
+  "origin": "./src/entities/asset.ts",
+  "hash": "a6925fd26a0fcfdd47eb2783361587cc",
+  "version": "6.0.0-dev.48"
+}
