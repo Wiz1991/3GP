@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
-        "target": "es2020",
+        "module": "CommonJS",
+        "target": "ESNext",
         "moduleResolution": "node",
         "declaration": true,
         "outDir": "./dist",
@@ -17,7 +17,7 @@
     },
     "exclude": ["node_modules"],
     "extends": "tsconfig/base.json",
-    "include": ["src"],
+    "include": ["src", "mikro-orm.config.ts"],
     "ts-node": {
         "require": ["tsconfig-paths/register"]
     }

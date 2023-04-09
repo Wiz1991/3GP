@@ -9,6 +9,15 @@
         "primary": true,
         "type": "string",
         "array": false
+      },
+      "schema": {
+        "name": "schema",
+        "kind": "scalar",
+        "type": "jsonb",
+        "nullable": false,
+        "getter": false,
+        "setter": false,
+        "array": false
       }
     },
     "props": [
@@ -17,6 +26,15 @@
         "kind": "scalar",
         "primary": true,
         "type": "string",
+        "array": false
+      },
+      {
+        "name": "schema",
+        "kind": "scalar",
+        "type": "jsonb",
+        "nullable": false,
+        "getter": false,
+        "setter": false,
         "array": false
       }
     ],
@@ -30,7 +48,7 @@
     "checks": [],
     "concurrencyCheckKeys": {},
     "className": "Asset",
-    "path": "./src/entities/asset.ts",
+    "path": "./src/entities/asset.entity.ts",
     "name": "Asset",
     "abstract": false,
     "internal": true,
@@ -41,7 +59,7 @@
     "relations": [],
     "collection": "asset"
   },
-  "origin": "./src/entities/asset.ts",
-  "hash": "a6925fd26a0fcfdd47eb2783361587cc",
+  "origin": "./src/entities/asset.entity.ts",
+  "hash": "6a9c055216a3d28e55727b73e72e7ae5",
   "version": "6.0.0-dev.48"
 }
