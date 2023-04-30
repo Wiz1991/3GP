@@ -1,0 +1,18 @@
+version: '3.9'
+
+services:
+  api:
+    container_name: api-bin
+    build:
+      context: ..
+      dockerfile: crates/api-bin/src/Dockerfile
+    volumes:
+      - /tmp/app:/var/log/app
+    ports:
+      - '8080:8080'
+    env_file:
+      - ../.env
+      - ../.env.docker
+    depends_on:
+      postgres:
+        condition: service_healthy

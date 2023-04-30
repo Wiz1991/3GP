@@ -1,31 +1,31 @@
 {
-    "name": "3gp",
-    "version": "0.0.0",
-    "private": true,
-    "workspaces": [
-        "apps/*",
-        "packages/*"
-    ],
-    "scripts": {
-        "build": "turbo run build",
-        "dev": "turbo run dev --parallel",
-        "lint": "turbo run lint",
-        "format": "prettier --write \"**/*.{ts,tsx,md}\""
-    },
-    "devDependencies": {
-        "@types/swagger-ui-express": "^4.1.3",
-        "eslint-config-custom": "*",
-        "prettier": "latest",
-        "turbo": "latest"
-    },
-    "engines": {
-        "node": ">=14.0.0"
-    },
-    "packageManager": "npm@8.19.3",
-    "mikro-orm": {
-        "useTsNode": true,
-        "configPaths": [
-            "./apps/api/mikro-orm.config.ts"
-        ]
-    }
+  "name": "3gp",
+  "version": "1.0.0",
+  "scripts": {
+    "prepare": "husky install",
+    "sloc": "sloc ./crates --exclude ./crates/web/dist"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.0.0",
+    "@commitlint/config-conventional": "^17.0.0",
+    "@types/uuid": "^8.3.4",
+    "cypress": "^10.3.1",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-cypress": "^2.12.1",
+    "husky": "^7.0.0",
+    "lint-staged": "^12.4.0",
+    "prettier": "2.7.1",
+    "typescript": "^4.7.4"
+  },
+  "hooks": {
+    "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+  },
+  "lint-staged": {
+    "*.rs": "cargo make format",
+    "*.{ts,js,json}": "prettier --write --ignore-unknown"
+  },
+  "dependencies": {
+    "sloc": "^0.2.1",
+    "uuid": "^8.3.2"
+  }
 }

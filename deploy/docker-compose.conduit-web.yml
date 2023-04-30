@@ -1,0 +1,12 @@
+version: '3.9'
+
+services:
+  web:
+    container_name: web
+    build:
+      context: ..
+      dockerfile: crates/web/src/Dockerfile
+    volumes:
+      - /tmp/app:/var/log/app
+    ports:
+      - '3000:3000'

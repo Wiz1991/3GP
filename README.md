@@ -1,73 +1,65 @@
-# Turborepo starter
+To get started, install [Docker](https://www.docker.com/) and [cargo-make](https://github.com/sagiegurari/cargo-make)
+on your local machine (Windows users may want to use WSL for ease of development), then clone/fork the repository. Once
+you have the project
+local to your machine, create an `.env` file local to workspace with valid values (you can use the defaults as well).
 
-This is an official npm starter turborepo.
-
-## What's inside?
-
-This turborepo uses [npm](https://www.npmjs.com/) as a package manager. It includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `ui`: a stub React component library shared by both `web` and `docs` applications
-- `eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `tsconfig`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-npm run build
+```bash
+cp .env.example .env
 ```
 
-### Develop
+Next, create and start our Docker containers:
 
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-npm run dev
+```bash
+cargo make docker
 ```
 
-### Remote Caching
+Once the application containers have started, verify all integration tests pass:
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
+```bash
+cargo make integration
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+Again, the target above will run all included unit tests found in the project. To run the frontend project
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your turborepo:
-
-```
-npx turbo link
+```bash
+cargo make web
 ```
 
-## Useful Links
+## Project Structure
 
-Learn more about the power of Turborepo:
+We utilize [cargo workspaces](https://doc.rust-lang.org/book/ch14-03-cargo-workspaces.html) to help encapsulate
+project-specific logic/domains, with a rough organization strategy as follows:
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+- `crates/conduit-bin` - API entry point, consisting of a single `main.rs` file to drive startup and wire library
+  dependencies together
+- `crates/web` - web frontend project utilizing Next.js
+- `crates/api` - web API project housing axum specific setup, endpoints, routing, request/response marshalling,
+  etc.
+- `crates/application` - application logic and contract definitions between domains, services, and repository
+- `crates/domain` - a simple project to house PORS (plain old rust structs) used for API request and responses,
+  services, etc.
+- `crates/infrastructure` - a project adapter containing implementations of the application business logics definitions
+  from
+  higher up
+- `integrations` - contains the RealWorld Postman test scripts and collection
+- `cypress` - contains the e2e tests used to test the frontend project (`crates/web`)
+- `deploy` - contains all Docker Compose files used for building the project containers
+- `.husky` - contains husky git hooks
+
+## Using Docker
+
+The project utilizes Docker containers for Postgres and Prometheus metrics, as well as containers for the API and frontend. For example, when starting the
+application with `cargo make docker`, navigating to `localhost:9090` will bring you to the Prometheus metrics page.
+From there, running integration tests with `cargo make integration` to simulate traffic to the API allows one to observe
+the
+various
+metrics that are recorded in the service layer: request count, request latency, and histograms of service request
+intervals.
+
+To start the API outside the Docker context, run:
+
+```bash
+cargo make dev # or cargo run
+```
+
+The `dev` tasks takes on the `postgres` task as a dependency, so your database container will start automatically.
