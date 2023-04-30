@@ -8,9 +8,14 @@ import { container, inject, injectable } from 'tsyringe';
 
 @injectable()
 export class AssetService {
-    constructor(private readonly mikroOrm: MikroORM) {}
+    constructor(
+        private readonly mikroOrm: MikroORM,
+        private readonly em: EntityManager,
+        private readonly repo: EntityRepository<Asset>
+    ) {}
 
-    public hello() {
+    public async hello() {
+        console.log(await this.repo.findAll());
         return 'hello';
     }
 }

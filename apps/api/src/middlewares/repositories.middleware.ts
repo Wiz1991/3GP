@@ -6,10 +6,11 @@ import {
     PostgreSqlDriver,
 } from '@mikro-orm/postgresql';
 import { NextFunction } from 'express';
-import { ExpressMiddlewareInterface } from 'routing-controllers';
+import { ExpressMiddlewareInterface, Middleware } from 'routing-controllers';
 import { container, injectable } from 'tsyringe';
 
 @injectable()
+@Middleware({ type: 'before', priority: 998 })
 export class ContextRepositoriesMiddleware
     implements ExpressMiddlewareInterface
 {
@@ -24,13 +25,12 @@ export class ContextRepositoriesMiddleware
         });
 
         const entities = this.orm.getMetadata();
-        Object.values(entities).map((meta) => {
+        Object.values(entities.getAll()).map((meta) => {
             container.register(EntityRepository<typeof meta.class>, {
                 useValue: em.getRepository(meta.class),
             });
         });
 
-        console.log(`Created repositories for ${em._id}`);
         next();
     }
 }

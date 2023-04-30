@@ -8,6 +8,7 @@ import {
 import { container } from 'tsyringe';
 import { routingControllersToSpec } from 'routing-controllers-openapi';
 import { serve, setup } from 'swagger-ui-express';
+import { EntityManagerContext } from '@/middlewares/em-context.middleware';
 
 export class Server {
     public app: Application;
@@ -55,9 +56,7 @@ export class Server {
             controllers: [
                 path.join(__dirname, './controllers/*.controller.ts'),
             ],
-            middlewares: [
-                path.join(__dirname, './middlewares/*.middleware.ts'),
-            ],
+            middlewares: [path.join(__dirname, './middlewares/*')],
             cors: true,
             classTransformer: true,
             validation: true,

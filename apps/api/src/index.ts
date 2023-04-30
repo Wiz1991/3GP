@@ -2,6 +2,8 @@ import 'reflect-metadata';
 import { useContainer } from 'routing-controllers';
 import { TsyringeAdapter } from '@/adapters/tsyringe.adapter';
 import { Server } from '@/server';
+import '@/middlewares/em-context.middleware';
+import '@/middlewares/repositories.middleware';
 
 useContainer(new TsyringeAdapter());
 
