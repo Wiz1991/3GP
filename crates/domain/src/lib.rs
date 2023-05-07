@@ -1,3 +1,9 @@
+pub mod assets;
+pub mod nodes;
+pub mod objects;
+pub mod scenes;
+pub mod schemas;
+
 use std::collections::HashMap;
 
 use serde::{Deserialize, Serialize};

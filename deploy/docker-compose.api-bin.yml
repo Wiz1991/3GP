@@ -5,7 +5,7 @@ services:
     container_name: api-bin
     build:
       context: ..
-      dockerfile: crates/api-bin/src/Dockerfile
+      dockerfile: crates/api/Dockerfile
     volumes:
       - /tmp/app:/var/log/app
     ports:

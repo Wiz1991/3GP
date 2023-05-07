@@ -12,7 +12,6 @@ COPY ./rust-toolchain ./
 COPY ./Cargo.lock ./
 COPY ./Cargo.toml ./
 COPY ./.env.docker ./.env
-COPY ./crates/api-bin ./crates/api-bin
 COPY ./crates/web ./crates/web
 COPY ./crates/api ./crates/api
 COPY ./crates/application ./crates/application
@@ -27,7 +26,7 @@ RUN --mount=type=cache,target=/app/target \
     set -eux; \
     rustup install stable; \
     cargo build --workspace --release; \
-    objcopy --compress-debug-sections target/release/api-bin ./app
+    objcopy --compress-debug-sections target/release/api ./app
 
 # stage two - we'll utilize a second container to run our built binary from our first container - slim containers!
 FROM debian:11.3-slim as deploy

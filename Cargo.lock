@@ -58,25 +58,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "api-bin"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "api",
- "application",
- "axum",
- "clap",
- "domain",
- "dotenv",
- "infrastructure",
- "sqlx",
- "tokio",
- "tower-http",
- "tracing",
- "tracing-subscriber",
-]
-
-[[package]]
 name = "application"
 version = "0.1.0"
 dependencies = [
