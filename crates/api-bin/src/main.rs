@@ -6,9 +6,9 @@ use tracing::info;
 use tracing_subscriber::layer::SubscriberExt;
 use tracing_subscriber::util::SubscriberInitExt;
 
-use api::router::ConduitApplicationController;
+use api::router::ApplicationController;
 use application::config::AppConfig;
-use infrastructure::connection_pool::ConduitConnectionManager;
+use infrastructure::connection_pool::ConnectionManager;
 use infrastructure::service_register::ServiceRegister;
 
 #[tokio::main]
@@ -23,7 +23,7 @@ async fn main() -> anyhow::Result<()> {
         .init();
 
     info!("environment loaded and configuration parsed, initializing Postgres connection and running migrations...");
-    let pg_pool = ConduitConnectionManager::new_pool(&config.database_url, config.run_migrations)
+    let pg_pool = ConnectionManager::new_pool(&config.database_url, config.run_migrations)
         .await
         .expect("could not initialize the database connection pool");
 
@@ -39,7 +39,7 @@ async fn main() -> anyhow::Result<()> {
     // }
 
     info!("migrations successfully ran, initializing axum server...");
-    ConduitApplicationController::serve(port, &config.cors_origin, service_register)
+    ApplicationController::serve(port, &config.cors_origin, service_register)
         .await
         .context("could not initialize application routes")?;
 

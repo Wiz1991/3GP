@@ -9,12 +9,12 @@ use thiserror::Error;
 use tracing::log::error;
 use validator::{ValidationErrors, ValidationErrorsKind};
 
-pub type ConduitResult<T> = Result<T, ConduitError>;
+pub type AppResult<T> = Result<T, AppError>;
 
-pub type ConduitErrorMap = HashMap<Cow<'static, str>, Vec<Cow<'static, str>>>;
+pub type ErrorMap = HashMap<Cow<'static, str>, Vec<Cow<'static, str>>>;
 
 #[derive(Error, Debug)]
-pub enum ConduitError {
+pub enum AppError {
     #[error("authentication is required to access this resource")]
     Unauthorized,
     #[error("username or password is incorrect")]
@@ -34,7 +34,7 @@ pub enum ConduitError {
     #[error("{0}")]
     ObjectConflict(String),
     #[error("unprocessable request has occurred")]
-    UnprocessableEntity { errors: ConduitErrorMap },
+    UnprocessableEntity { errors: ErrorMap },
     #[error(transparent)]
     ValidationError(#[from] ValidationErrors),
     #[error(transparent)]
@@ -43,10 +43,10 @@ pub enum ConduitError {
     AnyhowError(#[from] anyhow::Error),
 }
 
-impl ConduitError {
+impl AppError {
     /// Maps `validator`'s `ValidationrErrors` to a simple map of property name/error messages structure.
     pub fn unprocessable_entity(errors: ValidationErrors) -> Response {
-        let mut validation_errors = ConduitErrorMap::new();
+        let mut validation_errors = ErrorMap::new();
 
         // roll through the struct errors at the top level
         for (_, error_kind) in errors.into_errors() {
@@ -77,7 +77,7 @@ impl ConduitError {
     }
 }
 
-impl IntoResponse for ConduitError {
+impl IntoResponse for AppError {
     fn into_response(self) -> Response {
         if let Self::ValidationError(e) = self {
             return Self::unprocessable_entity(e);

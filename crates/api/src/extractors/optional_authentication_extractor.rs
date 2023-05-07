@@ -4,7 +4,7 @@ use axum::Extension;
 use http::header::AUTHORIZATION;
 use tracing::warn;
 
-use application::errors::ConduitError;
+use application::errors::AppError;
 use application::utils::token_service::DynTokenService;
 
 /// Extracts the JWT from the Authorization token header, optional and will not return errors if none is found.
@@ -15,14 +15,14 @@ impl<B> FromRequest<B> for OptionalAuthentication
 where
     B: Send + Sync,
 {
-    type Rejection = ConduitError;
+    type Rejection = AppError;
 
     async fn from_request(request: &mut RequestParts<B>) -> Result<Self, Self::Rejection> {
         let optional_token_response = Ok(OptionalAuthentication(None));
 
         let Extension(token_service): Extension<DynTokenService> = Extension::from_request(request)
             .await
-            .map_err(|err| ConduitError::InternalServerErrorWithContext(err.to_string()))?;
+            .map_err(|err| AppError::InternalServerErrorWithContext(err.to_string()))?;
 
         if let Some(authorization_header) = request.headers().get(AUTHORIZATION) {
             if let Ok(header_value) = authorization_header.to_str() {

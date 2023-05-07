@@ -30,7 +30,7 @@ cargo make web
 We utilize [cargo workspaces](https://doc.rust-lang.org/book/ch14-03-cargo-workspaces.html) to help encapsulate
 project-specific logic/domains, with a rough organization strategy as follows:
 
-- `crates/conduit-bin` - API entry point, consisting of a single `main.rs` file to drive startup and wire library
+- `crates/api-bin` - API entry point, consisting of a single `main.rs` file to drive startup and wire library
   dependencies together
 - `crates/web` - web frontend project utilizing Next.js
 - `crates/api` - web API project housing axum specific setup, endpoints, routing, request/response marshalling,

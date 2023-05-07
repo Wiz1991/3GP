@@ -3,7 +3,7 @@ use std::sync::Arc;
 use argon2::Config;
 
 use application::config::AppConfig;
-use application::errors::{ConduitError, ConduitResult};
+use application::errors::{AppError, AppResult};
 use application::utils::security_service::SecurityService;
 
 pub struct ArgonSecurityService {
@@ -17,7 +17,7 @@ impl ArgonSecurityService {
 }
 
 impl SecurityService for ArgonSecurityService {
-    fn hash_password(&self, raw_password: &str) -> ConduitResult<String> {
+    fn hash_password(&self, raw_password: &str) -> AppResult<String> {
         let password_bytes = raw_password.as_bytes();
         let hashed_password =
             argon2::hash_encoded(password_bytes, self.config.argon_salt.as_bytes(), &Config::default()).unwrap();
@@ -25,9 +25,9 @@ impl SecurityService for ArgonSecurityService {
         Ok(hashed_password)
     }
 
-    fn verify_password(&self, stored_password: &str, attempted_password: String) -> ConduitResult<bool> {
+    fn verify_password(&self, stored_password: &str, attempted_password: String) -> AppResult<bool> {
         let hashes_match = argon2::verify_encoded(stored_password, attempted_password.as_bytes())
-            .map_err(|err| ConduitError::InternalServerErrorWithContext(err.to_string()))?;
+            .map_err(|err| AppError::InternalServerErrorWithContext(err.to_string()))?;
 
         Ok(hashes_match)
     }

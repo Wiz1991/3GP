@@ -9,9 +9,9 @@ use axum::middleware::Next;
 use axum::response::IntoResponse;
 use axum::routing::get;
 use axum::{middleware, BoxError, Json, Router};
-use lazy_static::lazy_static;
 use domain::PingResponse;
 use http::{HeaderValue, Method, Request};
+use lazy_static::lazy_static;
 use metrics_exporter_prometheus::{Matcher, PrometheusBuilder};
 use serde_json::json;
 use tower::ServiceBuilder;
@@ -25,9 +25,9 @@ lazy_static! {
     static ref EXPONENTIAL_SECONDS: &'static [f64] = &[0.005, 0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 1.0, 2.5, 5.0, 10.0,];
 }
 
-pub struct ConduitApplicationController;
+pub struct ApplicationController;
 
-impl ConduitApplicationController {
+impl ApplicationController {
     pub async fn serve(port: u32, cors_origin: &str, service_register: ServiceRegister) -> anyhow::Result<()> {
         let recorder_handle = PrometheusBuilder::new()
             .set_buckets_for_metric(

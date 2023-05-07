@@ -7,7 +7,7 @@ use serde::{Deserialize, Serialize};
 use sqlx::types::time::OffsetDateTime;
 
 use application::config::AppConfig;
-use application::errors::{ConduitError, ConduitResult};
+use application::errors::{AppError, AppResult};
 use application::utils::token_service::TokenService;
 
 /// Our claims struct, it needs to derive `Serialize` and/or `Deserialize`
@@ -29,7 +29,7 @@ impl JwtService {
 }
 
 impl TokenService for JwtService {
-    fn new_token(&self, user_id: i64, email: &str) -> ConduitResult<String> {
+    fn new_token(&self, user_id: i64, email: &str) -> AppResult<String> {
         let from_now = Duration::from_secs(3600);
         let expired_future_time = SystemTime::now().add(from_now);
         let exp = OffsetDateTime::from(expired_future_time);
@@ -45,18 +45,18 @@ impl TokenService for JwtService {
             &claims,
             &EncodingKey::from_secret(self.config.token_secret.as_bytes()),
         )
-        .map_err(|err| ConduitError::InternalServerErrorWithContext(err.to_string()))?;
+        .map_err(|err| AppError::InternalServerErrorWithContext(err.to_string()))?;
 
         Ok(token)
     }
 
-    fn get_user_id_from_token(&self, token: String) -> ConduitResult<i64> {
+    fn get_user_id_from_token(&self, token: String) -> AppResult<i64> {
         let decoded_token = decode::<Claims>(
             token.as_str(),
             &DecodingKey::from_secret(self.config.token_secret.as_bytes()),
             &Validation::new(Algorithm::HS256),
         )
-        .map_err(|err| ConduitError::InternalServerErrorWithContext(err.to_string()))?;
+        .map_err(|err| AppError::InternalServerErrorWithContext(err.to_string()))?;
 
         Ok(decoded_token.claims.user_id)
     }

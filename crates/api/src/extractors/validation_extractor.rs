@@ -1,4 +1,4 @@
-use application::errors::ConduitError;
+use application::errors::AppError;
 use async_trait::async_trait;
 use axum::extract::{FromRequest, RequestParts};
 use axum::{BoxError, Json};
@@ -16,7 +16,7 @@ where
     B::Data: Send,
     B::Error: Into<BoxError>,
 {
-    type Rejection = ConduitError;
+    type Rejection = AppError;
 
     async fn from_request(request: &mut RequestParts<B>) -> Result<Self, Self::Rejection> {
         let Json(value) = Json::<T>::from_request(request).await?;
